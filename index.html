@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>服部研究室 | Hattori Lab, Keio SFC</title>
+  <meta name="description" content="慶應義塾大学 湘南藤沢キャンパス（SFC）の服部研究室。森の中で、知能を設計する。">
+  <meta name="theme-color" content="#0F3D2E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230F3D2E'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%236EE7A8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Zen+Kaku+Gothic+New:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#research">本文へ</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top"><span class="nav__mark" aria-hidden="true"></span><span class="nav__text">服部研究室</span></a>
+    <nav aria-label="ページ内リンク">
+      <ul>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#members">Members</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#access">Access</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Hero: 森のように揺れる緑の光点。マウスに反応する -->
+    <section class="hero" aria-label="服部研究室">
+      <canvas id="field" aria-hidden="true"></canvas>
+      <div class="hero__inner">
+        <p class="hero__en">Hattori Lab <span>Keio University SFC</span></p>
+        <h1>服部研究室</h1>
+        <p class="hero__tag">森の中で、知能を設計する。</p>
+      </div>
+      <a class="hero__scroll" href="#research" aria-label="下へスクロール"><span></span></a>
+    </section>
+
+    <!-- Research -->
+    <section id="research" class="section section--white">
+      <div class="wrap">
+        <h2 class="title"><span class="title__en">Research</span><span class="title__ja">研究テーマ</span></h2>
+        <div class="research" id="research-grid"></div>
+      </div>
+    </section>
+
+    <!-- Members: 研究室のドアに掛かる「在室ボード」。名札を役職ごとの段に並べる -->
+    <section id="members" class="section section--mist">
+      <div class="wrap">
+        <h2 class="title"><span class="title__en">Members</span><span class="title__ja">メンバー</span></h2>
+        <div class="board" id="member-board">
+          <div class="board__note" role="note">
+            <strong>サンプルを含みます</strong>
+            「サンプル」と付いた名札は、架空の人物です。
+          </div>
+          <!-- 段は js/members.js が data/members.js から生成 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- About: 研究室の説明と扱っているテーマ -->
+    <section id="about" class="section section--white">
+      <div class="wrap about">
+        <div class="about__body">
+          <h2 class="title"><span class="title__en">About</span><span class="title__ja">研究室について</span></h2>
+          <div id="about-lead"></div>
+        </div>
+        <div class="seminar" id="about-seminar"></div>
+      </div>
+    </section>
+
+    <!-- Access -->
+    <section id="access" class="section section--mist">
+      <div class="wrap access">
+        <div class="access__body">
+          <h2 class="title"><span class="title__en">Access</span><span class="title__ja">アクセス</span></h2>
+          <p class="access__place">慶應義塾大学 湘南藤沢キャンパス</p>
+          <p class="access__addr">〒252-0882 神奈川県藤沢市遠藤5322</p>
+        </div>
+        <div class="access__map">
+          <img src="data/sfc-campus-concept.png"
+               alt="白い校舎と池、緑豊かな並木道を描いた湘南藤沢キャンパスの建築コンセプトアート"
+               width="1536" height="1024" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span class="foot__mark" aria-hidden="true"></span>
+    <span>Hattori Lab, Keio University SFC</span>
+  </footer>
+
+  <script src="data/members.js"></script>
+  <script src="data/content.js"></script>
+  <script src="js/field.js"></script>
+  <script src="js/members.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
