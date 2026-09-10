@@ -1,4 +1,4 @@
-// 研究テーマ・研究室紹介
+// 研究テーマ・これまでの研究・研究室紹介
 window.LAB_CONTENT = {
   // glyph: "chat" | "graph" | "board" | "route" | "arm" | "trace" … js/main.js のアイコン種別（テーマごとに1つずつ）
   research: [
@@ -14,6 +14,39 @@ window.LAB_CONTENT = {
       text: "人が手で作り込むのではなく、データから学んでロボットが動けるようにする。" },
     { glyph: "trace",   en: "Imitative Drawing",        title: "画像処理による模写",
       text: "画像処理で対象の形や特徴をとらえ、模写として再現する。" },
+  ],
+
+  pastResearch: [
+    {
+      year: 2025,
+      papers: [
+        {
+          author: "稲葉 素記", authorEn: "Motoki Inaba",
+          title: "オセロにおける次の一手問題と解説自動生成",
+          titleEn: "Automatically Generating Next-Move Problems and Explanations in Othello",
+          linkLabel: "要旨・本文 / Full text",
+          url: "https://doc.lib.keio.ac.jp/region1/mag/m/2025/mgtm_2025_4415.pdf",
+        },
+      ],
+    },
+    {
+      year: 2024,
+      papers: [
+        {
+          author: "黄 勃翰", authorEn: "Bohan Huang",
+          title: "Code Completion System Suitable for Beginners", titleLang: "en",
+          linkLabel: "要旨・本文 / Full text",
+          url: "https://doc.lib.keio.ac.jp/region1/mag/m/2024/mgtm_2024_4313.pdf",
+        },
+        {
+          author: "伊藤 明孝", authorEn: "Akitaka Ito",
+          title: "ウェアラブルデバイスを用いた集中力推定と介入",
+          titleEn: "Concentration Estimation and Intervention Using Wearable Devices",
+          linkLabel: "要旨 / Abstract",
+          url: "https://doc.lib.keio.ac.jp/region1/mag/m/2024/mgtm_2024_4293ab.pdf",
+        },
+      ],
+    },
   ],
 
   about: {

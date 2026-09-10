@@ -1,4 +1,4 @@
-// 研究テーマ・研究室紹介の描画と、ナビゲーションの現在位置表示。
+// 研究テーマ・これまでの研究・研究室紹介の描画と、ナビゲーションの現在位置表示。
 (() => {
   const content = window.LAB_CONTENT || {};
 
@@ -76,6 +76,28 @@
           <p>${r.text}</p>
         </div>
       </article>`).join("");
+  }
+
+  // ---- これまでの研究（年度ごと、新しい順） ----
+  const archive = document.getElementById("research-archive");
+  if (archive && content.pastResearch) {
+    archive.innerHTML = content.pastResearch.map((group) => `
+      <section class="archive__year" aria-labelledby="archive-year-${group.year}">
+        <h3 class="archive__year-title" id="archive-year-${group.year}">${group.year}<span>年度</span></h3>
+        <ul class="archive__papers">
+          ${group.papers.map((paper) => `
+            <li class="paper">
+              <article>
+                <p class="paper__author">${paper.author}<span lang="en">（${paper.authorEn}）</span></p>
+                <h4 class="paper__title"${paper.titleLang ? ` lang="${paper.titleLang}"` : ""}>${paper.title}</h4>
+                ${paper.titleEn ? `<p class="paper__en" lang="en">${paper.titleEn}</p>` : ""}
+                <a class="paper__link" href="${paper.url}" aria-label="${paper.author}：${paper.linkLabel}（PDF）">
+                  ${paper.linkLabel}<span class="paper__format">PDF</span><span aria-hidden="true">↗</span>
+                </a>
+              </article>
+            </li>`).join("")}
+        </ul>
+      </section>`).join("");
   }
 
   // ---- 研究室について ----
