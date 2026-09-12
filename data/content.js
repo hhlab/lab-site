@@ -21,10 +21,19 @@ window.LAB_CONTENT = {
       year: 2025,
       papers: [
         {
+          author: "稲葉 素記・濱田 遼太郎・服部 隆志",
+          authorEn: "Motoki Inaba, Ryotaro Hamada, Takashi Hattori",
+          title: "オセロにおける次の一手問題と解説自動生成の性能評価",
+          titleEn: "Evaluating the Performance of Automatically Generated Next-Move Problems and Explanations in Othello",
+          linkLabel: "論文情報 / Paper",
+          linkFormat: "WEB",
+          url: "https://ipsj.ixsq.nii.ac.jp/records/2005507",
+        },
+        {
           author: "稲葉 素記", authorEn: "Motoki Inaba",
           title: "オセロにおける次の一手問題と解説自動生成",
           titleEn: "Automatically Generating Next-Move Problems and Explanations in Othello",
-          linkLabel: "要旨・本文 / Full text",
+          linkLabel: "学内のみ",
           url: "https://doc.lib.keio.ac.jp/region1/mag/m/2025/mgtm_2025_4415.pdf",
         },
       ],
@@ -35,7 +44,7 @@ window.LAB_CONTENT = {
         {
           author: "黄 勃翰", authorEn: "Bohan Huang",
           title: "Code Completion System Suitable for Beginners", titleLang: "en",
-          linkLabel: "要旨・本文 / Full text",
+          linkLabel: "学内のみ",
           url: "https://doc.lib.keio.ac.jp/region1/mag/m/2024/mgtm_2024_4313.pdf",
         },
         {
@@ -44,6 +53,31 @@ window.LAB_CONTENT = {
           titleEn: "Concentration Estimation and Intervention Using Wearable Devices",
           linkLabel: "要旨 / Abstract",
           url: "https://doc.lib.keio.ac.jp/region1/mag/m/2024/mgtm_2024_4293ab.pdf",
+        },
+      ],
+    },
+    {
+      year: 2016,
+      papers: [
+        {
+          author: "服部 隆志", authorEn: "Takashi Hattori",
+          title: "プログラミング入門をどうするか：7. 慶應義塾大学SFCにおける初年次プログラミング教育",
+          titleEn: "Discussion on the Way of Computer Programming Education: 7. First-Year Programming Course at Keio SFC",
+          linkLabel: "論文情報 / Paper",
+          linkFormat: "WEB",
+          url: "https://ipsj.ixsq.nii.ac.jp/records/158101",
+        },
+      ],
+    },
+    {
+      year: 2015,
+      papers: [
+        {
+          author: "大田 祐輔", authorEn: "Yusuke Ota",
+          title: "トピックモデルを用いた自由記述アンケートの要約",
+          linkLabel: "成果報告 / Report",
+          linkFormat: "WEB",
+          url: "https://www.kri.sfc.keio.ac.jp/report/mori/2015/c-072/",
         },
       ],
     },

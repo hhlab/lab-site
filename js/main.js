@@ -91,8 +91,8 @@
                 <p class="paper__author">${paper.author}<span lang="en">（${paper.authorEn}）</span></p>
                 <h4 class="paper__title"${paper.titleLang ? ` lang="${paper.titleLang}"` : ""}>${paper.title}</h4>
                 ${paper.titleEn ? `<p class="paper__en" lang="en">${paper.titleEn}</p>` : ""}
-                <a class="paper__link" href="${paper.url}" aria-label="${paper.author}：${paper.linkLabel}（PDF）">
-                  ${paper.linkLabel}<span class="paper__format">PDF</span><span aria-hidden="true">↗</span>
+                <a class="paper__link" href="${paper.url}" aria-label="${paper.author}：${paper.linkLabel}（${paper.linkFormat || "PDF"}）">
+                  ${paper.linkLabel}<span class="paper__format">${paper.linkFormat || "PDF"}</span><span aria-hidden="true">↗</span>
                 </a>
               </article>
             </li>`).join("")}
