@@ -29,13 +29,6 @@ window.LAB_CONTENT = {
           linkFormat: "WEB",
           url: "https://ipsj.ixsq.nii.ac.jp/records/2005507",
         },
-        {
-          author: "稲葉 素記", authorEn: "Motoki Inaba",
-          title: "オセロにおける次の一手問題と解説自動生成",
-          titleEn: "Automatically Generating Next-Move Problems and Explanations in Othello",
-          linkLabel: "学内のみ",
-          url: "https://doc.lib.keio.ac.jp/region1/mag/m/2025/mgtm_2025_4415.pdf",
-        },
       ],
     },
     {
