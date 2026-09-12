@@ -44,7 +44,7 @@ window.LAB_CONTENT = {
           author: "伊藤 明孝", authorEn: "Akitaka Ito",
           title: "ウェアラブルデバイスを用いた集中力推定と介入",
           titleEn: "Concentration Estimation and Intervention Using Wearable Devices",
-          linkLabel: "要旨 / Abstract",
+          linkLabel: "学内のみ",
           url: "https://doc.lib.keio.ac.jp/region1/mag/m/2024/mgtm_2024_4293ab.pdf",
         },
       ],
