@@ -10,8 +10,9 @@
       campus: "慶應義塾大学 湘南藤沢キャンパス",
       address: "〒252-0882 神奈川県藤沢市遠藤5322",
       campusAlt: "白い校舎と池、緑豊かな並木道を描いた湘南藤沢キャンパスの建築コンセプトアート",
-      language: "表示言語", year: "年度", weekly: "週1回", interests: "専門分野",
+      language: "表示言語", year: "年度", publicationYear: "年", weekly: "週1回", interests: "専門分野",
       faculty: "教員", doctoral: "博士課程", masters: "修士課程",
+      otherResearch: "その他の研究・活動", researchCountUnit: "件",
     },
     en: {
       pageTitle: "Hattori Lab | Keio University SFC",
@@ -22,8 +23,9 @@
       campus: "Keio University, Shonan Fujisawa Campus",
       address: "5322 Endo, Fujisawa, Kanagawa 252-0882, Japan",
       campusAlt: "Architectural concept art of Shonan Fujisawa Campus with white buildings, a pond, and tree-lined paths",
-      language: "Display language", year: "Academic year", weekly: "Weekly", interests: "Research interests",
+      language: "Display language", year: "Academic year", publicationYear: "Year", weekly: "Weekly", interests: "Research interests",
       faculty: "Faculty", doctoral: "Doctoral", masters: "Master's",
+      otherResearch: "Other Research & Activities", researchCountUnit: "items",
     },
   };
   let language = "ja";

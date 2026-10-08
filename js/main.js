@@ -82,26 +82,40 @@
         </article>`).join("");
     }
 
-    // ---- これまでの研究（年度ごと、新しい順） ----
+    // ---- これまでの研究（掲載年ごと、新しい順） ----
     const archive = document.getElementById("research-archive");
     if (archive && content.pastResearch) {
-      archive.innerHTML = content.pastResearch.map((group) => `
-        <section class="archive__year" aria-labelledby="archive-year-${group.year}">
-          <h3 class="archive__year-title" id="archive-year-${group.year}">${group.year}<span>${i18n.t("year")}</span></h3>
+      const renderArchive = (collapsed) => content.pastResearch.map((group) => {
+        const papers = group.papers.filter((paper) => Boolean(paper.collapsed) === collapsed);
+        if (!papers.length) return "";
+        const yearId = `archive-year-${collapsed ? "more-" : ""}${group.year}`;
+        return `
+        <section class="archive__year" aria-labelledby="${yearId}">
+          <h3 class="archive__year-title" id="${yearId}">${group.year}<span>${i18n.t("publicationYear")}</span></h3>
           <ul class="archive__papers">
-            ${group.papers.map((paper) => `
+            ${papers.map((paper) => `
               <li class="paper">
                 <article>
                   <p class="paper__author">${pick(paper.author, paper.authorEn)}${english ? "" : `<span lang="en">（${paper.authorEn}）</span>`}</p>
                   <h4 class="paper__title" lang="${english ? "en" : (paper.titleLang || "ja")}">${pick(paper.title, paper.titleEn)}</h4>
                   ${!english && paper.titleEn ? `<p class="paper__en" lang="en">${paper.titleEn}</p>` : ""}
+                  ${paper.publication ? `<p class="paper__publication">${pick(paper.publication, paper.publicationEn)}</p>` : ""}
                   <a class="paper__link" href="${paper.url}" aria-label="${pick(paper.author, paper.authorEn)}: ${pick(paper.linkLabel, paper.linkLabelEn)} (${paper.linkFormat || "PDF"})">
                     ${pick(paper.linkLabel, paper.linkLabelEn)}<span class="paper__format">${paper.linkFormat || "PDF"}</span><span aria-hidden="true">↗</span>
                   </a>
                 </article>
               </li>`).join("")}
           </ul>
-        </section>`).join("");
+        </section>`;
+      }).join("");
+      archive.innerHTML = renderArchive(false);
+      const moreArchive = document.getElementById("research-archive-more");
+      const more = document.getElementById("research-more");
+      const count = document.getElementById("research-more-count");
+      const otherPapers = content.pastResearch.flatMap((group) => group.papers).filter((paper) => paper.collapsed);
+      if (moreArchive) moreArchive.innerHTML = renderArchive(true);
+      if (more) more.hidden = !otherPapers.length;
+      if (count) count.textContent = `${otherPapers.length}${english ? " " : ""}${i18n.t("researchCountUnit")}`;
     }
 
     // ---- 研究室について ----
