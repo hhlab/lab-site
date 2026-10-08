@@ -1,6 +1,8 @@
 // 研究テーマ・これまでの研究・研究室紹介の描画と、ナビゲーションの現在位置表示。
 (() => {
   const content = window.LAB_CONTENT || {};
+  const i18n = window.LAB_I18N;
+  const pick = i18n.pick;
 
   // ---- 研究テーマのアイコン（線画。hover 時だけ CSS で動く） ----
   const GLYPH = {
@@ -65,56 +67,61 @@
       </svg>`,
   };
 
-  const grid = document.getElementById("research-grid");
-  if (grid && content.research) {
-    grid.innerHTML = content.research.map((r) => `
-      <article class="theme">
-        ${GLYPH[r.glyph] || GLYPH.graph}
-        <div class="theme__body">
-          <p class="theme__en">${r.en}</p>
-          <h3>${r.title}</h3>
-          <p>${r.text}</p>
-        </div>
-      </article>`).join("");
-  }
+  const render = () => {
+    const english = i18n.language === "en";
+    const grid = document.getElementById("research-grid");
+    if (grid && content.research) {
+      grid.innerHTML = content.research.map((r) => `
+        <article class="theme">
+          ${GLYPH[r.glyph] || GLYPH.graph}
+          <div class="theme__body">
+            ${english ? "" : `<p class="theme__en" lang="en">${r.en}</p>`}
+            <h3>${pick(r.title, r.titleEn)}</h3>
+            <p>${pick(r.text, r.textEn)}</p>
+          </div>
+        </article>`).join("");
+    }
 
-  // ---- これまでの研究（年度ごと、新しい順） ----
-  const archive = document.getElementById("research-archive");
-  if (archive && content.pastResearch) {
-    archive.innerHTML = content.pastResearch.map((group) => `
-      <section class="archive__year" aria-labelledby="archive-year-${group.year}">
-        <h3 class="archive__year-title" id="archive-year-${group.year}">${group.year}<span>年度</span></h3>
-        <ul class="archive__papers">
-          ${group.papers.map((paper) => `
-            <li class="paper">
-              <article>
-                <p class="paper__author">${paper.author}<span lang="en">（${paper.authorEn}）</span></p>
-                <h4 class="paper__title"${paper.titleLang ? ` lang="${paper.titleLang}"` : ""}>${paper.title}</h4>
-                ${paper.titleEn ? `<p class="paper__en" lang="en">${paper.titleEn}</p>` : ""}
-                <a class="paper__link" href="${paper.url}" aria-label="${paper.author}：${paper.linkLabel}（${paper.linkFormat || "PDF"}）">
-                  ${paper.linkLabel}<span class="paper__format">${paper.linkFormat || "PDF"}</span><span aria-hidden="true">↗</span>
-                </a>
-              </article>
-            </li>`).join("")}
-        </ul>
-      </section>`).join("");
-  }
+    // ---- これまでの研究（年度ごと、新しい順） ----
+    const archive = document.getElementById("research-archive");
+    if (archive && content.pastResearch) {
+      archive.innerHTML = content.pastResearch.map((group) => `
+        <section class="archive__year" aria-labelledby="archive-year-${group.year}">
+          <h3 class="archive__year-title" id="archive-year-${group.year}">${group.year}<span>${i18n.t("year")}</span></h3>
+          <ul class="archive__papers">
+            ${group.papers.map((paper) => `
+              <li class="paper">
+                <article>
+                  <p class="paper__author">${pick(paper.author, paper.authorEn)}${english ? "" : `<span lang="en">（${paper.authorEn}）</span>`}</p>
+                  <h4 class="paper__title" lang="${english ? "en" : (paper.titleLang || "ja")}">${pick(paper.title, paper.titleEn)}</h4>
+                  ${!english && paper.titleEn ? `<p class="paper__en" lang="en">${paper.titleEn}</p>` : ""}
+                  <a class="paper__link" href="${paper.url}" aria-label="${pick(paper.author, paper.authorEn)}: ${pick(paper.linkLabel, paper.linkLabelEn)} (${paper.linkFormat || "PDF"})">
+                    ${pick(paper.linkLabel, paper.linkLabelEn)}<span class="paper__format">${paper.linkFormat || "PDF"}</span><span aria-hidden="true">↗</span>
+                  </a>
+                </article>
+              </li>`).join("")}
+          </ul>
+        </section>`).join("");
+    }
 
-  // ---- 研究室について ----
-  const lead = document.getElementById("about-lead");
-  if (lead && content.about?.lead) {
-    lead.innerHTML = content.about.lead.map((t) => `<p class="about__lead">${t}</p>`).join("");
-  }
-  const seminar = document.getElementById("about-seminar");
-  if (seminar && content.about?.seminar) {
-    const sm = content.about.seminar;
-    seminar.innerHTML = `
-      <h3 class="seminar__title">${sm.title}<small>週1回</small></h3>
-      <p class="seminar__lead">${sm.lead}</p>
-      <dl class="seminar__roles">
-        ${sm.roles.map((r) => `<div><dt><b>${r.en}</b>${r.who}</dt><dd>${r.what}</dd></div>`).join("")}
-      </dl>`;
-  }
+    // ---- 研究室について ----
+    const lead = document.getElementById("about-lead");
+    if (lead && content.about?.lead) {
+      lead.innerHTML = pick(content.about.lead, content.about.leadEn).map((t) => `<p class="about__lead">${t}</p>`).join("");
+    }
+    const seminar = document.getElementById("about-seminar");
+    if (seminar && content.about?.seminar) {
+      const sm = content.about.seminar;
+      seminar.innerHTML = `
+        <h3 class="seminar__title">${pick(sm.title, sm.titleEn)}<small>${i18n.t("weekly")}</small></h3>
+        <p class="seminar__lead">${pick(sm.lead, sm.leadEn)}</p>
+        <dl class="seminar__roles">
+          ${sm.roles.map((r) => `<div><dt>${english ? "" : `<b lang="en">${r.en}</b>`}${pick(r.who, r.whoEn)}</dt><dd>${pick(r.what, r.whatEn)}</dd></div>`).join("")}
+        </dl>`;
+    }
+  };
+  render();
+  window.addEventListener("languagechange", render);
 
   // ---- ナビ: スクロールで背景、現在のセクションに下線 ----
   const nav = document.getElementById("nav");

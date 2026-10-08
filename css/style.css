@@ -22,6 +22,11 @@
 }
 
 html { scroll-behavior: smooth; color-scheme: light; }
+html[lang="en"] .title__ja { display: none; }
+html[lang="en"] h1 { font-size: clamp(3rem, 9vw, 7rem); letter-spacing: 0.04em; }
+html[lang="en"] .hero__tag { letter-spacing: 0.06em; }
+html[lang="en"] .board__role { letter-spacing: 0.02em; }
+html[lang="en"] .card__name { letter-spacing: 0.02em; }
 * { box-sizing: border-box; }
 body {
   margin: 0;
@@ -45,6 +50,7 @@ body {
 .nav {
   position: fixed; inset: 0 0 auto 0; z-index: 10;
   display: flex; justify-content: space-between; align-items: center;
+  gap: 20px;
   padding: 14px var(--pad);
   transition: background 0.3s, box-shadow 0.3s;
 }
@@ -66,7 +72,7 @@ body {
   width: 10px; height: 10px; border-radius: 50%; background: var(--leaf);
   box-shadow: 0 0 0 4px rgba(110, 231, 168, 0.35);
 }
-.nav ul { list-style: none; display: flex; gap: clamp(14px, 3vw, 36px); margin: 0; padding: 0; }
+.nav ul { list-style: none; display: flex; gap: clamp(12px, 2vw, 28px); margin: 0; padding: 0; }
 .nav ul a {
   position: relative; display: block; padding: 6px 0;
   font-family: var(--font-en); font-weight: 500; font-size: 0.95rem; letter-spacing: 0.04em;
@@ -79,6 +85,19 @@ body {
 .nav ul a:hover { color: var(--forest); }
 .nav ul a[aria-current] { color: var(--forest); }
 .nav ul a[aria-current]::after { right: 0; }
+.nav ul a { white-space: nowrap; }
+.language-switch {
+  display: flex; flex-shrink: 0; gap: 2px; padding: 3px;
+  border: 1px solid var(--line-solid); border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+}
+.language-switch button {
+  min-height: 38px; padding: 6px 12px; border: 0; border-radius: 999px;
+  background: transparent; color: var(--dim); cursor: pointer;
+  font: inherit; font-weight: 500; font-size: 0.8rem; white-space: nowrap;
+}
+.language-switch button:hover { color: var(--forest); background: var(--mist); }
+.language-switch button[aria-pressed="true"] { background: var(--forest); color: var(--white); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -127,7 +146,7 @@ h1 {
 }
 
 /* ---------- Sections ---------- */
-.section { padding: clamp(80px, 12vw, 160px) 0; }
+.section { padding: clamp(80px, 12vw, 160px) 0; scroll-margin-top: 120px; }
 .section--mist { background: var(--mist); }
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
 .title {
@@ -258,7 +277,7 @@ h1 {
 }
 
 .board__row {
-  display: grid; grid-template-columns: 156px 1fr; align-items: start;
+  display: grid; grid-template-columns: 156px minmax(0, 1fr); align-items: start;
   border-bottom: 1px solid var(--line);
 }
 .board__row:last-child { border-bottom: 0; }
@@ -280,6 +299,7 @@ h1 {
 /* 名札 */
 .card {
   position: relative; display: grid; gap: 4px; align-content: start; width: 240px; text-align: left;
+  max-width: 100%; min-width: 0;
   padding: 20px 20px 18px; border: 1px solid var(--line-solid); border-radius: 3px;
   background: #fff; color: var(--forest);
   box-shadow: 0 1px 2px rgba(15, 61, 46, 0.06), 0 6px 16px rgba(15, 61, 46, 0.08);
@@ -291,6 +311,7 @@ h1 {
   box-shadow: 0 1px 3px rgba(15, 61, 46, 0.4);
 }
 .card__name { font-weight: 500; font-size: 1.3rem; letter-spacing: 0.08em; line-height: 1.3; }
+.card__name { overflow-wrap: anywhere; }
 /* 本人のサイトがある人は氏名がリンク */
 .card__name a {
   color: inherit; text-decoration: none;
@@ -308,7 +329,7 @@ h1 {
 }
 /* 関心テーマ */
 .card__tags { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.card__tags li { font-size: 0.76rem; line-height: 1.6; padding: 2px 10px; border-radius: 999px; background: var(--mist); white-space: nowrap; }
+.card__tags li { font-size: 0.76rem; line-height: 1.6; padding: 2px 10px; border-radius: 999px; background: var(--mist); overflow-wrap: anywhere; }
 
 /* 教員の名札は一枚だけ大きく */
 .board__row--教員 .card { width: 320px; padding: 24px 24px 22px; }
@@ -323,7 +344,7 @@ h1 {
 /* ゼミの進め方 */
 .seminar { padding-top: 10px; }
 .seminar__title {
-  display: flex; align-items: baseline; gap: 14px; margin: 0 0 10px;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px; margin: 0 0 10px;
   font-weight: 500; font-size: 1.2rem; letter-spacing: 0.1em;
 }
 .seminar__title small {
@@ -336,7 +357,7 @@ h1 {
   display: grid; grid-template-columns: 10.5em 1fr; gap: 16px; align-items: baseline;
   padding: 18px 0; border-bottom: 1px solid var(--line);
 }
-.seminar__roles dt { display: flex; align-items: baseline; gap: 10px; font-weight: 500; letter-spacing: 0.06em; white-space: nowrap; }
+.seminar__roles dt { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; font-weight: 500; letter-spacing: 0.06em; }
 .seminar__roles dt b { font-family: var(--font-en); font-weight: 600; font-size: 0.85rem; color: var(--leaf); letter-spacing: 0.08em; min-width: 2.6em; }
 .seminar__roles dd { margin: 0; letter-spacing: 0.04em; }
 
@@ -362,19 +383,25 @@ h1 {
 }
 
 /* ---------- Responsive ---------- */
+@media (max-width: 1120px) {
+  .nav { flex-wrap: wrap; gap: 6px 16px; }
+  .nav nav { order: 3; width: 100%; }
+  .nav ul { justify-content: space-between; gap: 10px; }
+}
 @media (max-width: 720px) {
   .nav { padding: 12px 16px; flex-wrap: wrap; gap: 6px; }
   .nav nav { width: 100%; }
-  .nav ul { gap: 10px; justify-content: space-between; }
-  .nav ul a { font-size: 0.8rem; }
+  .nav ul { gap: 6px; justify-content: space-between; flex-wrap: wrap; }
+  .nav ul a { font-size: 0.75rem; letter-spacing: 0; }
+  .language-switch button { padding: 4px 10px; }
   .nav__brand { font-size: 0.9rem; gap: 8px; }
   .nav__logo { width: 34px; height: 34px; }
   .archive__year { grid-template-columns: 1fr; gap: 20px; padding: 28px 0; }
   .board { margin-top: 24px; border-width: 6px; }
   /* 付箋はボードの中の上部に貼る（段の見出しに重ねない） */
   .board__note { position: relative; top: 0; right: 0; margin: 16px 14px -6px auto; width: min(100% - 28px, 240px); font-size: 0.8rem; padding: 18px 16px 14px; }
-  .board__row { grid-template-columns: 1fr; }
-  .board__role { padding: 18px 18px 0; border-right: 0; display: flex; align-items: baseline; gap: 12px; }
+  .board__row { grid-template-columns: minmax(0, 1fr); }
+  .board__role { padding: 18px 18px 0; border-right: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; }
   .board__role small { margin: 0; display: flex; gap: 8px; }
   .board__role small span { margin: 0; }
   .board__cards { padding: 16px 18px 22px; gap: 14px 10px; }
