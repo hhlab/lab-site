@@ -18,7 +18,7 @@ window.LAB_MEMBERS = [
   { id: "inaba",    name: "稲葉 素記",   en: "Motoki Inaba", role: "博士", grade: "博士", gradeEn: "Doctoral student",
     interests: ["ゲーム情報学"], interestsEn: ["Game Informatics"] },
 
-  { id: "sugawara", name: "菅原 佳澄",   en: "Kasumi Sugawara", role: "修士", grade: "修士", gradeEn: "Master's student",
+  { id: "sugawara", name: "菅原 佳澄",   en: "Keito Sugawara", role: "修士", grade: "修士", gradeEn: "Master's student",
     interests: ["知能機械学", "制御工学"], interestsEn: ["Physical AI", "Control Engineering"] },
   { id: "odagaki",  name: "小田垣 椎太", en: "Shita Odagaki", role: "修士", grade: "修士", gradeEn: "Master's student",
     interests: ["画像処理", "モーショントラッキング"], interestsEn: ["Image Processing", "Motion Tracking"] },
